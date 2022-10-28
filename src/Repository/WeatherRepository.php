@@ -48,4 +48,24 @@ class WeatherRepository extends ServiceEntityRepository
 		$result = $query->getResult();
 		return $result;
 	}
+	
+	public function save(Weather $weather, bool $flush = false)
+    {
+        $this->getEntityManager()->persist($weather);
+
+        if ($flush) 
+		{
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    public function remove(Weather $weather, bool $flush = false)
+    {
+        $this->getEntityManager()->remove($weather);
+
+        if ($flush) 
+		{
+            $this->getEntityManager()->flush();
+        }
+    }
 }

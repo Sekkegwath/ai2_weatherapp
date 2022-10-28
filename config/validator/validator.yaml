@@ -1,0 +1,37 @@
+App\Entity\City:
+  properties:
+    Longitude:
+      - Range:
+          groups: [ edit, new ]
+          min: -180
+          max: 180
+      - NotBlank: ~
+    Latitude:
+      - Range:
+          groups: [ edit, new ]
+          min: -180
+          max: 180
+      - NotBlank: ~
+      
+App\Entity\Weather:
+  properties:
+    Temperature:
+      - Range:
+          groups: [edit, new]
+          min: -70
+          max: 60
+    Precipitation:
+      - Range:
+          groups: [edit, new]
+          min: -70
+          max: 60
+    OvercastLevel:
+      - Range:
+          groups: [edit, new]
+          min: 0
+          max: 100
+    Wind:
+      - Range:
+          groups: [edit, new]
+          min: 0
+          max: 300
