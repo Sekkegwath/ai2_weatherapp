@@ -27,8 +27,12 @@
                 <td>{{ weather.Date ? weather.Date|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ weather.Wind }}</td>
                 <td>
-                    <a href="{{ path('app_weather_crud_show', {'id': weather.id}) }}">show</a>
-                    <a href="{{ path('app_weather_crud_edit', {'id': weather.id}) }}">edit</a>
+                    {% if is_granted('ROLE_WEATHER_CRUD_SHOW') %}
+                        <a href="{{ path('app_weather_crud_show', {'id': weather.id}) }}">show</a>
+                    {% endif %}
+                    {% if is_granted('ROLE_WEATHER_CRUD_EDIT') %}
+                        <a href="{{ path('app_weather_crud_edit', {'id': weather.id}) }}">edit</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}
@@ -39,6 +43,13 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_weather_crud_new') }}">Create new</a>
-	<a href="{{ path('app_city_index') }}">Go to Cities</a>
+    {% if is_granted('ROLE_WEATHER_CRUD_NEW') %}
+        <a href="{{ path('app_weather_crud_new') }}">Create new</a>
+    {% endif %}
+    
+    {% if is_granted('ROLE_CITY_INDEX') %}
+	    <a href="{{ path('app_city_index') }}">Go to Cities</a>
+    {% endif %}
+
+    <a href="{{path('app_logout')}}">Log out</a>
 {% endblock %}

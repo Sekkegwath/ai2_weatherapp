@@ -7,3 +7,6 @@ weather_in_city:
 weather_in_city_by_name:
   path: /weather/{name}
   controller: App\Controller\WeatherController:cityActionByName
+
+app_logout:
+  path: /login
